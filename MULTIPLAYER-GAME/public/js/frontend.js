@@ -34,7 +34,7 @@ socket.on('updateProjectiles', backEndProjectiles => {
           y: backEndProjectile.velocity.y
         }
       })
-    }else {
+    } else {
       frontEndProjectiles[id].x += backEndProjectiles[id].velocity.x
       frontEndProjectiles[id].y += backEndProjectiles[id].velocity.y
     }
@@ -98,7 +98,7 @@ socket.on('updatePlayers', backEndPlayers => {
           frontEndPlayers[id].x += input.dx
           frontEndPlayers[id].y += input.dy
         })
-      }else {
+      } else {
         //para todos os outros players
         gsap.to(frontEndPlayers[id], {
           x: backEndPlayer.x,
@@ -117,7 +117,7 @@ socket.on('updatePlayers', backEndPlayers => {
       divToDelete.parentNode.removeChild(divToDelete)
 
       if(id === socket.id) usernameForm.style.display = 'block'
-
+      
       delete frontEndPlayers[id]
     }
   }
@@ -248,8 +248,8 @@ addEventListener('keyup', ({ code }) => {
   }
 })
 
-usernameForm.addEventListener('submit', ({ preventDefault }) => {
-  preventDefault()
+usernameForm.addEventListener('submit', (event) => {
+  event.preventDefault()
   usernameForm.style.display = 'none'
   const usernameInput = document.getElementById('usernameInput').value
   socket.emit('initGame', {
